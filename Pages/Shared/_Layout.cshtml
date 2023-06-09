@@ -1,35 +1,58 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Jorneymate_WEB</title>
+    <title>@ViewData["Title"] - Jorneymate</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/Jorneymate_WEB.styles.css" asp-append-version="true" />
+
 </head>
+
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-page="/Index">Jorneymate_WEB</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
-                        </li>
-                    </ul>
-                </div>
+    <header class="fixed-bottom">
+        <div class="d-flex nav-button-container sticky-top justify-content-center">
+            <div class="nav flex-row nav-pills mt-3 navbar-background-color nav-border" id="v-pills-tab" role="tablist">
+                <a class="nav-link active" id="tab_explore" data-bs-toggle="pill" asp-page="/Explore" role="tab">
+                    <div style="text-align: center;">
+                        <img src="Img/Icon_Search.png" height="25" style="vertical-align: middle; margin-right: 5px;">
+                        <br>
+                        <span>Explorar</span>
+                    </div>
+                </a>
+                <a class="nav-link" id="tab_lists" data-bs-toggle="pill" asp-page="/MyLists" role="tab">
+                    <div style="text-align: center;">
+                        <img src="Img/Icon_List.png" height="25" style="vertical-align: middle; margin-right: 5px;">
+                        <br>
+                        <span>Mis listas</span>
+                    </div>
+                </a>
+                <a class="nav-link" id="v-pills-profile-tab" data-bs-toggle="pill" asp-page="/NewRoutine" role="tab">
+                    <div style="text-align: center;">
+                        <img src="Img/Icon_Add.png" height="60" style="vertical-align: middle; margin-right: 5px;">
+                    </div>
+                </a>
+                <a class="nav-link" id="v-pills-messages-tab" data-bs-toggle="pill" asp-page="/LikedRoutines"
+                    role="tab">
+                    <div style="text-align: center;">
+                        <img src="Img/Icon_Favorites.png" height="25"
+                            style="vertical-align: middle; margin-right: 5px;">
+                        <br>
+                        <span>Mis favoritos</span>
+                    </div>
+                </a>
+                <a class="nav-link" id="v-pills-settings-tab" data-bs-toggle="pill" asp-page="/Profile" role="tab">
+                    <div style="text-align: center;">
+                        <img src="Img/Icon_Profile.png" height="25" style="vertical-align: middle; margin-right: 5px;">
+                        <br>
+                        <span>Perfil</span>
+                    </div>
+                </a>
             </div>
-        </nav>
+        </div>
     </header>
+
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
@@ -38,7 +61,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2023 - Jorneymate_WEB - <a asp-area="" asp-page="/Privacy">Privacy</a>
+            &copy; 2023 - Jorneymate - <a asp-area=""></a>
         </div>
     </footer>
 
@@ -46,6 +69,27 @@
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
 
+    <script>
+
+            // Obtener todos los elementos <a> con la clase "nav-link"
+        var navLinks = document.querySelectorAll('.nav-link');
+
+        // Agregar un evento de clic a cada elemento
+        navLinks.forEach(function (link) {
+            link.addEventListener('click', function (event) {
+                // Prevenir el comportamiento predeterminado del enlace
+                event.preventDefault();
+
+                // Obtener la página de destino desde el atributo "asp-page"
+                var page = link.getAttribute('asp-page');
+
+                // Redirigir al usuario a la página deseada
+                window.location = page;
+            });
+        });
+    </script>
+
     @await RenderSectionAsync("Scripts", required: false)
 </body>
+
 </html>
