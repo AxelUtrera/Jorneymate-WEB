@@ -1,14 +1,6 @@
-﻿using System;
-using Models;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Text;
-using System.Threading.Tasks;
-using System.Net.Http;
-using System.Security.AccessControl;
-using Newtonsoft.Json;
+﻿using System.Text;
 using Jorneymate_WEB.Models;
+using Newtonsoft.Json;
 
 namespace Logic
 {
