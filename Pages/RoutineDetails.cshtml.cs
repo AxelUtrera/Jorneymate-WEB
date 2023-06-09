@@ -14,6 +14,6 @@ public class RoutineDetails : PageModel
 
     public async System.Threading.Tasks.Task OnGetAsync()
     {
-        
+        routineDetails = await RoutineLogic.GetDetailsRoutine("648010b22595a5cc36d568dd");
     }
 }

@@ -1,16 +1,25 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
+﻿using Microsoft.AspNetCore.Mvc.RazorPages;
+using Jorneymate_WEB.Models;
+using Logic;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Jorneymate_WEB.Pages;
 
-public class IndexModel : PageModel
+public class Explorer : PageModel
 {
-    private readonly ILogger<IndexModel> _logger;
-
-    public IndexModel(ILogger<IndexModel> logger)
-    {
-        _logger = logger;
-    }
+    public List<Routine> routines = new List<Routine>();
+    
+    // public async Task<IActionResult> OnGetAsync()
+    // {
+    //     try{
+    //         routines = await RoutineLogic.GetRoutines();
+    //     }
+    //     catch(Exception e){
+    //         Console.WriteLine("Ha habido un error" + e.Message);
+    //     }
+        
+    //     return Page();
+    // }
 
     public void OnGet()
     {
