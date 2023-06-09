@@ -1,0 +1,62 @@
+@page
+@model RoutineDetails
+@{
+    ViewData["Title"] = "Detalles de Rutina";
+}
+
+<!-- Titulo -->
+<div style="margin-top: 30px; margin-bottom: 50px; margin-left: 0px; margin-right: 0px;">
+    <h3 class="fw-semibold"> Detalles de Rutina</h3>
+</div>
+
+<!-- Detalles de rutina -->
+
+<div style="display: flex; justify-content: flex-end; margin-right: 20px;">
+    <h5 class="fw-semibold">
+        De: 
+        <span class="fw-light">@Model.routineDetails.RoutineCreator</span> 
+    </h5>
+</div>
+
+<div style="margin-left: 20px; margin-bottom: 20px;">
+    <h4>@Model.routineDetails.Name</h4>
+</div>
+
+<div style="margin-left: 20px; margin-bottom: 20px;">
+    <h5>
+        Ubicación:
+        <span class="fw-light"> @Model.routineDetails.City, @Model.routineDetails.Country </span>
+    </h5>
+</div>
+
+<div style="margin-left: 20px; margin-bottom: 20px;">
+    <h5>
+        Categoria:
+        <span class="fw-light"> @Model.routineDetails.LabelCategory </span>
+    </h5>
+</div>
+
+<div style="margin-left: 20px; margin-bottom: 20px;">
+    <h5>
+        Presupuesto:
+        <span class="fw-light">$@Model.routineDetails.Budget </span>
+    </h5>
+</div>
+
+<div style="margin-left: 20px; margin-bottom: 20px;">
+    <h5>
+        Seguidores:
+        <span class="fw-light">@Model.routineDetails.Followers </span>
+    </h5>
+</div>
+
+<div style="margin-left: 20px; margin-bottom: 20px;">
+    <h5>
+        Descripción:
+        <span class="fw-light">@Model.routineDetails.RoutineDescription </span>
+    </h5>
+</div>
+
+<div style="display: flex; justify-content: flex-end; margin-top: 30px; margin-right: 20px;">
+    <button type="button" class="btn btn-primary">Agregar tarea</button>
+</div>
