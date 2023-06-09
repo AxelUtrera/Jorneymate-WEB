@@ -14,7 +14,7 @@
     <header class="fixed-bottom">
         <div class="d-flex nav-button-container sticky-top justify-content-center">
             <div class="nav flex-row nav-pills mt-3 navbar-background-color nav-border" id="v-pills-tab" role="tablist">
-                <a class="nav-link active" id="tab_explore" data-bs-toggle="pill" asp-page="/Explore" role="tab">
+                <a class="nav-link active" id="tab_explore" data-bs-toggle="pill" asp-page="/Index" role="tab">
                     <div style="text-align: center;">
                         <img src="Img/Icon_Search.png" height="25" style="vertical-align: middle; margin-right: 5px;">
                         <br>
@@ -68,26 +68,6 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
-
-    <script>
-
-            // Obtener todos los elementos <a> con la clase "nav-link"
-        var navLinks = document.querySelectorAll('.nav-link');
-
-        // Agregar un evento de clic a cada elemento
-        navLinks.forEach(function (link) {
-            link.addEventListener('click', function (event) {
-                // Prevenir el comportamiento predeterminado del enlace
-                event.preventDefault();
-
-                // Obtener la página de destino desde el atributo "asp-page"
-                var page = link.getAttribute('asp-page');
-
-                // Redirigir al usuario a la página deseada
-                window.location = page;
-            });
-        });
-    </script>
 
     @await RenderSectionAsync("Scripts", required: false)
 </body>
