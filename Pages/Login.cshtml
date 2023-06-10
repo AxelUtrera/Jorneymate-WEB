@@ -4,7 +4,87 @@
     ViewData["title"] = "Iniciar sesión";
 }
 
+<style>
+    .bg-container {
+        position: relative;
+    }
 
-<div class="container">
+    .bg-image {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url("/Img/Background_Login.jpg");
+        background-size: cover;
+        background-repeat: no-repeat;
+        z-index: 1;
+    }
 
+    .bg-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.4);
+        /* Ajusta la opacidad del fondo más oscuro */
+        z-index: 2;
+    }
+
+    .bg-content {
+        position: relative;
+        z-index: 3;
+    }
+
+    .bg-color-principal {
+        background-color: #f3f3f3;
+    }
+
+    .cmt {
+        margin-top: 8rem;
+    }
+</style>
+
+<div class="container-sm bg-color rounded shadow" style="max-width: 60rem">
+    <div class="row rounded" style="height: 550px;">
+        <div class="col bg-container">
+            <div class="bg-image"></div>
+            <div class="bg-overlay"></div>
+            <div class="bg-content">
+                <p class="h2 mt-5 text-center text-white">Inicia sesión</p>
+                <p class="display-10 text-center text-white">Descubre tu próxima gran aventura</p>
+                
+                @if(TempData.ContainsKey("Error")){
+                    <div class="alert alert-danger">@TempData["Error"]</div>
+                }
+                <form class="d-grid m-5" asp-page-handler="login" method="POST">
+                    <div class="form-group">
+                        <label for="emailControl" class="text-white">Email:</label>
+                        <input type="text" class="form-control" id="emailConntrol"
+                            placeholder="ejemplo@journeymate.com" asp-for="Email"> 
+                    </div>
+
+                    <div class="form-group">
+                        <label for="passwordControl" class="text-white mt-3">Contraseña:</label>
+                        <input type="password" class="form-control" id="passwordControl" asp-for="Password"
+                            placeholder="Ingresa tu contraseña">
+                        <label class="text-white fw-light text-sm">¿Olvidaste tu contraseña?</label>
+                    </div>
+                    <button type="button" class="btn btn-success rounded-3 mt-5">Iniciar sesión</button>
+                </form>
+            </div>
+        </div>
+        <div class="col d-flex flex-column align-items-center text-center mx-5 cmt h-auto">
+            <img src="Img/Jorneymate_Isotype_Black.png" width="250" />
+            <h6 class="mt-4">Encuentra inspiración en las rutinas de otros viajeros y crea tus propias aventuras con
+                Journeymate, la aplicación para los amantes de los viajes y las actividades en ciudades</h6>
+            <div class="d-flex cmt">
+                <h6 class="mt-1">¿Aun no tienes cuenta?</h6>
+                <a class="ms-1" asp-page="/Register">registrate aqui</a>
+
+            </div>
+
+        </div>
+    </div>
 </div>
