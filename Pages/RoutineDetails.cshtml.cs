@@ -12,8 +12,10 @@ public class RoutineDetails : PageModel
 {
     public Routine routineDetails = new Routine();
 
-    public async System.Threading.Tasks.Task OnGetAsync()
+    public async Task<IActionResult> OnGetAsync(string idRoutine)
     {
-        routineDetails = await RoutineLogic.GetDetailsRoutine("648010b22595a5cc36d568dd");
+        routineDetails = await RoutineLogic.GetDetailsRoutine(idRoutine);
+        return Page();
     }
+
 }
