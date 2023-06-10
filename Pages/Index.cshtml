@@ -5,21 +5,39 @@
 }
 
 <div>
-    <h1 class="m-1">Explorar Rutinas</h1>
+    <h1>Explorar Rutinas</h1>
 </div>
 
+@foreach (var item in Model.routines)
+{
 
-<div class="card shadow mt-3 ">
-    <div class="card-body ms-4">
-        <h4 class="card-title"> Parques para pasear perros</h4>
-        <h5 class="card-subtitle fw-light">Xalapa, Mexico</h5>
-        <P class="card-texts mt-4"> Ejemplo de descripcion </P>
-        <div class="d-flex justify-content-center mt-4">
-            <h5 class="card-text fw-semibold col-11" style="margin-top: 10px;">De: <span class="fw-light"> dpax </span> </h5>
-            <div class="d-flex col-1 mt-3">
-                <img src="/Img/Icon_LikesHeart.png" height="25">
-                <p> 14 </p>
+    <div class="card shadow mt-3" style="cursor: pointer;" id="routineCard" onclick="sendIdRoutine('@item.Id')">
+        <div class="card-body ms-4">
+            <div class="d-flex">
+                <h4 class="card-title col-11"> @item.Name </h4>
+                <img src="/Img/Icon_EmptyHeart.png" height="35">
+            </div>
+            <h5 class="card-subtitle fw-light"> @item.City, @item.Country </h5>
+            <P class="card-texts mt-4"> @item.RoutineDescription </P>
+            <div class="d-flex justify-content-center mt-4">
+                <h5 class="card-text fw-semibold col-11" style="margin-top: 10px;">De: <span class="fw-light"> @item.RoutineCreator </span> </h5>
+                <div class="d-flex col-1 mt-3">
+                    <img src="/Img/Icon_LikesHeart.png" height="25">
+                    <p> @item.Followers </p>
+                </div>
             </div>
         </div>
     </div>
-</div>
+}
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+
+    const sendIdRoutine = (idRoutine) => {
+        var url = "/RoutineDetails/?idRoutine=" + idRoutine ;
+        window.location.href = url;
+    }
+
+    
+</script>

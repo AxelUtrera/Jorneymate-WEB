@@ -5,8 +5,11 @@
 }
 
 <!-- Titulo -->
-<div style="margin-top: 30px; margin-bottom: 50px; margin-left: 0px; margin-right: 0px;">
-    <h3 class="fw-semibold"> Detalles de Rutina</h3>
+<div class="m-3 d-flex"  >
+    <h3 class="fw-semibold col-11"> Detalles de Rutina</h3>
+    <button type="button" class="btn btn-light shadow col-1" onclick="navigateBack()">
+        <img src="/Img/Icon_Return.png">
+    </button>
 </div>
 
 <!-- Detalles de rutina -->
@@ -60,3 +63,11 @@
 <div style="display: flex; justify-content: flex-end; margin-top: 30px; margin-right: 20px;">
     <button type="button" class="btn btn-primary">Agregar tarea</button>
 </div>
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    const navigateBack = () => {
+        window.history.back();
+    }
+</script>

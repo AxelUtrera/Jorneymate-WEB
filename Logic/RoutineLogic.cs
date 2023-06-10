@@ -48,7 +48,7 @@ namespace Logic
             try
             {
                 HttpClient server = new HttpClient();
-                string url = "http://localhost:9000/api/" + apiVersion + "/routines/" + idRoutine;
+                string url = "http://localhost:9000/api/" + apiVersion + "/routines/routineDetails/" + idRoutine;
                 HttpResponseMessage messageResponse = await server.GetAsync(url);
                 string jsonResponse = await messageResponse.Content.ReadAsStringAsync();
 
