@@ -1,4 +1,4 @@
-﻿using Models;
+﻿using Jorneymate_WEB.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;

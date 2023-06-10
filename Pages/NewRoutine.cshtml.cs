@@ -18,7 +18,6 @@
 
         }
 
-        [HttpPost]
         public async Task<IActionResult> OnPost(Routine newRoutine)
         {
             Console.WriteLine(UserLogged.User.Username);

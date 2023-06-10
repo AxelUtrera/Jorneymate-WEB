@@ -1,3 +1,4 @@
+using Jorneymate_WEB.Models;
 
 namespace Jorneymate_WEB.Models
 {
