@@ -1,10 +1,14 @@
 @page
 @model EditProfile
+@using Jorneymate_WEB.Models
+@inject UserContext userContext;
 @{
     ViewData["Title"] = "Personalizar Perfil";
 }
 
-<form id="editProfile" method="post">
+<form id="edit-profile" method="post">
+    <input hidden name="Username" value="@userContext.User.Username">
+    <input hidden name="Age" value="@userContext.User.Age">
     <div class="d-flex">
         <h2 class="fw-semibold me-5 col-9">Personalizar Perfil</h2>
         <button type="button" class="btn btn-light shadow me-3" data-bs-toggle="modal"
@@ -21,8 +25,8 @@
         <h4 class="mt-5 fw-light col-6">Apellido</h4>
     </div>
     <div class="d-flex">
-        <input type="text" name="Name" class="form-control me-4" id="inputName" value="@Model.userRecover.Name" placeholder="Alexander" required>
-        <input type="text" name="Lastname" class="form-control" id="inputLastname" value="@Model.userRecover.Lastname" placeholder="Solis" required>
+        <input type="text" name="Name" class="form-control me-4" id="inputName" value="@userContext.User.Name" placeholder="Alexander" required>
+        <input type="text" name="Lastname" class="form-control" id="inputLastname" value="@userContext.User.Lastname" placeholder="Solis" required>
     </div>
     
     <div class="d-flex">
@@ -30,8 +34,8 @@
         <h4 class="mt-5 fw-light col-6">Numero Telefonico</h4>
     </div>
     <div class="d-flex">
-        <input type="text" name="Email" class="form-control me-4" id="inputEmail" value="@Model.userRecover.Email" placeholder="email@email.com" required>
-        <input type="text" name="PhoneNumber" class="form-control" id="inputPhoneNumber" value="@Model.userRecover.PhoneNumber" placeholder="9999999999" pattern="[0-9]{10}" required>
+        <input type="text" name="Email" class="form-control me-4" id="inputEmail" value="@userContext.User.Email" placeholder="email@email.com" required>
+        <input type="text" name="PhoneNumber" class="form-control" id="inputPhoneNumber" value="@userContext.User.PhoneNumber" placeholder="9999999999" pattern="[0-9]{10}" required>
     </div>
 
     <div class="d-flex">
@@ -39,13 +43,13 @@
         <h4 class="mt-5 fw-light col-6">Ciudad</h4>
     </div>
     <div class="d-flex">
-        <input type="text" name="Country" class="form-control me-4" id="inputCountry" value="@Model.userRecover.Country" placeholder="Mexico" required>
-        <input type="text" name="City" class="form-control" id="inputCity" value="@Model.userRecover.City" placeholder="CDMX" required>
+        <input type="text" name="Country" class="form-control me-4" id="inputCountry" value="@userContext.User.Country" placeholder="Mexico" required>
+        <input type="text" name="City" class="form-control" id="inputCity" value="@userContext.User.City" placeholder="CDMX" required>
     </div>
 
     <div>
         <h4 class="mt-5 fw-light me-3">Descripcion</h4>
-        <input type="text" name="UserDescription" class="form-control me-4" id="inputDescripcion" value="@Model.userRecover.UserDescription" placeholder="Descripcion profunda" required>
+        <input type="text" name="UserDescription" class="form-control me-4" id="inputDescripcion" value="@userContext.User.UserDescription" placeholder="Descripcion profunda" required>
     </div>
 
     <div>

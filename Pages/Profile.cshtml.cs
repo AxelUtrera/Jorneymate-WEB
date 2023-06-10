@@ -7,12 +7,23 @@ namespace Jorneymate_WEB.Pages;
 
 public class Profile : PageModel
 {
+    private UserContext UserLogged {get; set;}
 
-    public User user;
-
-    public async Task<IActionResult> OnGetAsync(string username)
+    public Profile(UserContext userContext)
     {
-        user = await UserLogic.RecoverUserByUsername("DanielPaxtian69");
+        UserLogged = userContext;
+    }
+
+    public async Task<IActionResult> OnGetAsync()
+    {
+        UserLogged.User = await UserLogic.RecoverUserByUsername(UserLogged.User.Username);
         return Page();
+    }
+
+    [HttpPost]
+    public void OnPost()
+    {
+        Console.WriteLine("agarre el post");
+        
     }
 }
