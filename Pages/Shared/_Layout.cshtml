@@ -1,4 +1,20 @@
-﻿<!DOCTYPE html>
+﻿@using Jorneymate_WEB.Models;
+@inject UserContext UserLogged;
+
+@functions {
+    public string GetPagePath(string normalPath)
+    {
+
+        if (UserLogged.User == null)
+        {
+            normalPath = "/Login";
+        }
+
+        return normalPath;
+    }
+}
+
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -28,13 +44,12 @@
                         <span>Mis listas</span>
                     </div>
                 </a>
-                <a class="nav-link" id="v-pills-profile-tab"  asp-page="/NewRoutine" role="tab">
+                <a class="nav-link" id="v-pills-profile-tab" asp-page="/NewRoutine" role="tab">
                     <div style="text-align: center;">
                         <img src="Img/Icon_Add.png" height="60" style="vertical-align: middle; margin-right: 5px;">
                     </div>
                 </a>
-                <a class="nav-link" id="v-pills-messages-tab"  asp-page="/LikedRoutines"
-                    role="tab">
+                <a class="nav-link" id="v-pills-messages-tab" asp-page="/LikedRoutines" role="tab">
                     <div style="text-align: center;">
                         <img src="Img/Icon_Favorites.png" height="25"
                             style="vertical-align: middle; margin-right: 5px;">
@@ -42,7 +57,7 @@
                         <span>Mis favoritos</span>
                     </div>
                 </a>
-                <a class="nav-link" id="v-pills-settings-tab" asp-page="/Profile" role="tab">
+                <a class="nav-link" id="v-pills-settings-tab" asp-page='@GetPagePath("/profile")' role="tab">
                     <div style="text-align: center;">
                         <img src="Img/Icon_Profile.png" height="25" style="vertical-align: middle; margin-right: 5px;">
                         <br>
@@ -58,7 +73,6 @@
             @RenderBody()
         </main>
     </div>
-
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
