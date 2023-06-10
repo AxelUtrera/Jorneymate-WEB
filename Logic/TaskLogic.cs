@@ -1,5 +1,4 @@
 ﻿using Jorneymate_WEB.Models;
-using Models;
 using Newtonsoft.Json;
 using System;
 using System.CodeDom;
