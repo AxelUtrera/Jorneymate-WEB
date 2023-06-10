@@ -1,0 +1,84 @@
+@page
+@model EditProfile
+@{
+    ViewData["Title"] = "Personalizar Perfil";
+}
+
+<form id="editProfile" method="post">
+    <div class="d-flex">
+        <h2 class="fw-semibold me-5 col-9">Personalizar Perfil</h2>
+        <button type="button" class="btn btn-light shadow me-3" data-bs-toggle="modal"
+            data-bs-target="#confirmCancelModal">
+            <img src="/Img/Icon_Return.png">
+        </button>
+        <button type="submit" class="btn btn-primary shadow col-2">
+            Actualizar Perfil
+        </button>
+    </div>
+
+    <div class="d-flex">
+        <h4 class="mt-5 fw-light me-3 col-6">Nombre</h4>
+        <h4 class="mt-5 fw-light col-6">Apellido</h4>
+    </div>
+    <div class="d-flex">
+        <input type="text" name="Name" class="form-control me-4" id="inputName" value="@Model.userRecover.Name" placeholder="Alexander" required>
+        <input type="text" name="Lastname" class="form-control" id="inputLastname" value="@Model.userRecover.Lastname" placeholder="Solis" required>
+    </div>
+    
+    <div class="d-flex">
+        <h4 class="mt-5 fw-light me-3 col-6">Email</h4>
+        <h4 class="mt-5 fw-light col-6">Numero Telefonico</h4>
+    </div>
+    <div class="d-flex">
+        <input type="text" name="Email" class="form-control me-4" id="inputEmail" value="@Model.userRecover.Email" placeholder="email@email.com" required>
+        <input type="text" name="PhoneNumber" class="form-control" id="inputPhoneNumber" value="@Model.userRecover.PhoneNumber" placeholder="9999999999" pattern="[0-9]{10}" required>
+    </div>
+
+    <div class="d-flex">
+        <h4 class="mt-5 fw-light me-3 col-6">Pais</h4>
+        <h4 class="mt-5 fw-light col-6">Ciudad</h4>
+    </div>
+    <div class="d-flex">
+        <input type="text" name="Country" class="form-control me-4" id="inputCountry" value="@Model.userRecover.Country" placeholder="Mexico" required>
+        <input type="text" name="City" class="form-control" id="inputCity" value="@Model.userRecover.City" placeholder="CDMX" required>
+    </div>
+
+    <div>
+        <h4 class="mt-5 fw-light me-3">Descripcion</h4>
+        <input type="text" name="UserDescription" class="form-control me-4" id="inputDescripcion" value="@Model.userRecover.UserDescription" placeholder="Descripcion profunda" required>
+    </div>
+
+    <div>
+        <h4 class="mt-5 fw-light me-3">Imagen de Perfil</h4>
+        <input class="form-control" type="file" id="formFile" accept="image/*">
+    </div>
+
+</form>
+
+
+
+<div class="modal fade" id="confirmCancelModal" tabindex="-1" aria-labelledby="confirmCancelModel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="cancelModalLabel">¿Cancelar?</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                ¿Desea cancelar la personalizacion? Todos los datos ingresados se perderan
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary" onclick="navigateBack()">OK</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+
+    const navigateBack = () => {
+        window.history.back();
+    }
+</script>
