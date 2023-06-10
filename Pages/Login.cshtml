@@ -44,6 +44,8 @@
     .cmt {
         margin-top: 8rem;
     }
+
+    
 </style>
 
 <div class="container-sm bg-color rounded shadow" style="max-width: 60rem">
@@ -54,24 +56,36 @@
             <div class="bg-content">
                 <p class="h2 mt-5 text-center text-white">Inicia sesión</p>
                 <p class="display-10 text-center text-white">Descubre tu próxima gran aventura</p>
-                
-                @if(TempData.ContainsKey("Error")){
-                    <div class="alert alert-danger">@TempData["Error"]</div>
-                }
-                <form class="d-grid m-5" asp-page-handler="login" method="POST">
+                <div style="height: 30px;">
+                    @if (TempData.ContainsKey("Error"))
+                    {
+                        <div class="alert alert-danger alert-dismissible fade show text-center" role="alert">
+                            <span class="text-sm">@TempData["Error"]</span>
+                        </div>
+                    }
+                </div>
+
+                <form class="d-grid m-4" asp-page-handler="login" method="POST">
                     <div class="form-group">
                         <label for="emailControl" class="text-white">Email:</label>
-                        <input type="text" class="form-control" id="emailConntrol"
-                            placeholder="ejemplo@journeymate.com" asp-for="Email"> 
+                        <input type="text" class="form-control" id="emailConntrol" placeholder="ejemplo@journeymate.com"
+                            asp-for="Email">
+                        <div class="invalid-feedback">
+                            Este campo es obligatorio.
+                        </div>
                     </div>
 
                     <div class="form-group">
                         <label for="passwordControl" class="text-white mt-3">Contraseña:</label>
                         <input type="password" class="form-control" id="passwordControl" asp-for="Password"
                             placeholder="Ingresa tu contraseña">
-                        <label class="text-white fw-light text-sm">¿Olvidaste tu contraseña?</label>
+                        <div class="invalid-feedback">
+                            Este campo es obligatorio.
+                        </div>
+                        <label class="text-white fw-light 
+                        text-sm">¿Olvidaste tu contraseña?</label>
                     </div>
-                    <button type="button" class="btn btn-success rounded-3 mt-5">Iniciar sesión</button>
+                    <button type="submit" class="btn btn-success rounded-3 mt-5">Iniciar sesión</button>
                 </form>
             </div>
         </div>

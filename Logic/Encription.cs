@@ -12,14 +12,18 @@ namespace Logic
         public static String GetHashedPassword(string password)
         {
             string passwordHashed = "";
-            string key = "$_jourNeyMateIsTheB35TPlatForMForJourney5&EnJoy-$$";
-            using (var hmac = new HMACSHA256(Encoding.UTF8.GetBytes(key)))
+            if (password != null)
             {
-                byte[] hashBytes = hmac.ComputeHash(Encoding.UTF8.GetBytes(password));
-                passwordHashed = BitConverter.ToString(hashBytes).Replace("-", "").ToLower();
+                string key = "$_jourNeyMateIsTheB35TPlatForMForJourney5&EnJoy-$$";
+                using (var hmac = new HMACSHA256(Encoding.UTF8.GetBytes(key)))
+                {
+                    byte[] hashBytes = hmac.ComputeHash(Encoding.UTF8.GetBytes(password));
+                    passwordHashed = BitConverter.ToString(hashBytes).Replace("-", "").ToLower();
+                }
             }
 
-            return passwordHashed;            
+
+            return passwordHashed;
         }
     }
 }

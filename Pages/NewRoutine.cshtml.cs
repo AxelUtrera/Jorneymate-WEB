@@ -1,21 +1,30 @@
-using Jorneymate_WEB.Models;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-using Logic; 
+    using Jorneymate_WEB.Models;
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.AspNetCore.Mvc.RazorPages;
+    using Logic; 
 
-namespace Jorneymate_WEB.Pages;
-
-public class NewRoutine : PageModel
-{
-
-    public void OnGet(){
-
-    }
-
-    [HttpPost]
-    public async Task<IActionResult> OnPost(Routine newRoutine)
+    namespace Jorneymate_WEB.Pages
     {
-        string idRoutine = await RoutineLogic.SaveRoutine("DanielPaxtian69", newRoutine);
-        return RedirectToPage("/Index");
+    public class NewRoutine : PageModel
+    {
+
+        private UserContext UserLogged { get; set; }
+
+        public NewRoutine(UserContext userLogged){
+            UserLogged = userLogged;
+        }
+
+        public void OnGet(){
+
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> OnPost(Routine newRoutine)
+        {
+            Console.WriteLine(UserLogged.User.Username);
+            string idRoutine = await RoutineLogic.SaveRoutine(UserLogged.User.Username, newRoutine);
+            return RedirectToPage("/Index");
+        }
     }
-}
+    }
+

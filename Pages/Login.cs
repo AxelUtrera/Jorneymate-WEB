@@ -1,31 +1,50 @@
 using Jorneymate_WEB.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Logic;
 
 namespace Jorneymate_WEB.Pages
 {
     public class Login : PageModel
     {
-        public User UserLogged { get; set; }
+        public UserContext UserLogged { get; set; }
+
+        public Login(UserContext userLogged)
+        {
+            UserLogged = userLogged;
+        }
 
         [BindProperty]
-        public string Email { get; set; } 
+        public string? Email { get; set; }
 
         [BindProperty]
-        public string Password { get; set; }
-        
+        public string? Password { get; set; }
+
+        [HttpPost]
         public async Task<IActionResult> OnPostAsync()
         {
-            User userResult = await Logic.Autentication.Login(Email, Password);
+            User? userResult = null;
+            try
+            {
+                if (Email != null && Password != null)
+                {
+                    userResult = await Autentication.Login(Email, Password);
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Ha habido un error" + e.Message);
+            }
 
             if (userResult != null)
             {
-                UserLogged = userResult;
+                UserLogged.User = userResult;
+                Console.WriteLine(UserLogged.User.Username);
                 return RedirectToPage("/Index");
             }
             else
             {
-                TempData["Error"] = "Los datos ingresados son incorrectos. Intenta nuevamente.";
+                TempData["Error"] = "El correo o la contraseña son incorrectos";
                 return Page();
             }
         }
