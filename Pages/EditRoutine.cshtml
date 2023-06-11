@@ -1,0 +1,127 @@
+@page
+@model EditRoutine;
+@{
+    ViewData["Title"] = "Editar Rutina";
+}
+
+@section Scripts{
+    @if (@Model.routineToEdit != null)
+    {
+        <form id="editRoutine-form" method="post">
+            <div class="d-flex">
+                <h2 class="fw-semibold me-5 col-9">Editar Rutina</h2>
+                <button type="button" class="btn btn-light shadow me-3" data-bs-toggle="modal"
+                    data-bs-target="#confirmCancelModal">
+                    <img src="/Img/Icon_Return.png">
+                </button>
+                <button type="submit" class="btn btn-primary shadow col-2">
+                    Actualizar Rutina
+                </button>
+            </div>
+
+            <div>
+                <h4 class="mt-2">Titulo</h4>
+                <input type="text" name="Name" value="@Model.routineToEdit.Name" class="form-control" id="inputRoutineTitle"
+                    placeholder="Noche de fiesta" required>
+
+                <div class="d-flex">
+                    <h4 class="mt-4 me-3 col-6">Ciudad</h4>
+                    <h4 class="mt-4 col-6">País</h4>
+                </div>
+                <div class="d-flex">
+                    <input type="text" name="City" value="@Model.routineToEdit.City" class="form-control me-4"
+                        id="inputRoutineCity" placeholder="Monterrey" required>
+                    <input type="text" name="Country" value="@Model.routineToEdit.Country" class="form-control"
+                        id="inputRoutineCountry" placeholder="México" required>
+                </div>
+
+                <div class="d-flex">
+                    <h4 class="mt-4 me-3 col-6">Estado</h4>
+                    <h4 class="mt-4 col-6">Localidad</h4>
+                </div>
+                <div class="d-flex">
+                    <input type="text" name="StateCountry" value="@Model.routineToEdit.StateCountry" class="form-control me-4"
+                        id="inputRoutineState" placeholder="Nuevo León" required>
+                    <input type="text" name="Town" value="@Model.routineToEdit.Town" class="form-control" id="inputRoutineTown"
+                        placeholder="Arena Monterrey" required>
+                </div>
+
+                <div class="d-flex">
+                    <h4 class="mt-4 me-3 col-6">Categoria</h4>
+                    <h4 class="mt-4 col-6">Visibilidad</h4>
+                </div>
+
+
+
+                <div class="d-flex">
+                    <select class="form-select me-4" name="LabelCategory" id="inputCategory" required>
+                        <option selected>@Model.routineToEdit.LabelCategory</option>
+                        <option value="Turismo">Turismo</option>
+                        <option value="Gastronomía">Gastronomía</option>
+                        <option value="Compras">Compras</option>
+                        <option value="Entretenimiento">Entretenimiento</option>
+                        <option value="Actividades al aire libre">Actividades al aire libre</option>
+                        <option value="Vida nocturna">Vida nocturna</option>
+                        <option value="Arte y cultura">Arte y cultura</option>
+                        <option value="Naturaleza y espacios verdes">Naturaleza y espacios verdes</option>
+                        <option value="Actividades educativas">Actividades educativas</option>
+                        <option value="Deportes y recreación">Deportes y recreación</option>
+                        <option value="Relajación y bienestar">Relajación y bienestar</option>
+                        <option value="Eventos culturales">Eventos culturales</option>
+                        <option value="Aventura">Aventura</option>
+                        <option value="Actividades acuaticas">Actividades acuaticas</option>
+                        <option value="Educación y aprendizaje">Educación y aprendizaje</option>
+                    </select>
+                    <select class="form-select" name="Visibility" id="inputVisibility" required>
+                        <option selected disabled value="">Selecciona</option>
+                        <option value="public">Publica</option>
+                        <option value="private">Privada</option>
+                    </select>
+                </div>
+
+                <div>
+                    <h4 class="mt-3">Descripcion</h4>
+                    <input type="text" class="form-control" value="@Model.routineToEdit.RoutineDescription"
+                        name="RoutineDescription" id="inputRoutineDescription"
+                        placeholder="Lugares para pasar una noche de fiesta espectacular" required>
+                </div>
+            </div>
+            <input hidden name="Followers" value="@Model.routineToEdit.Followers">
+            <input hidden name="RoutineCreator" value="@Model.routineToEdit.RoutineCreator">
+        </form>
+    }
+}
+
+
+
+
+<div class="modal fade" id="confirmCancelModal" tabindex="-1" aria-labelledby="confirmCancelModel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="cancelModalLabel">¿Cancelar registro de rutina?</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                ¿Desea cancelar el registro? Todos los datos ingresados se perderan
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" onclick="navigateBack()">OK</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+
+    const navigateBack = () => {
+        window.history.back();
+    }
+</script>
+
+
+
+
+

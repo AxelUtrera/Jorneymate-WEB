@@ -8,7 +8,7 @@ using Logic;
 
 namespace Jorneymate_WEB.Pages;
 
-public class RoutineDetails : PageModel
+public class MyRoutineDetails : PageModel
 {
     public Routine routineDetails = new Routine();
     public List<Models.Task> tasksRoutines = new List<Models.Task>();
@@ -18,6 +18,12 @@ public class RoutineDetails : PageModel
         routineDetails = await RoutineLogic.GetDetailsRoutine(idRoutine);
         tasksRoutines = await TaskLogic.GetTasksByRoutineId(routineDetails.Id);
         return Page();
+    }
+
+    
+    public void OnPost(string idTask)
+    {
+        Console.WriteLine("Agarre el post");
     }
 
 }

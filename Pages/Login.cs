@@ -39,7 +39,6 @@ namespace Jorneymate_WEB.Pages
             if (userResult != null)
             {
                 UserLogged.User = userResult;
-                Console.WriteLine(UserLogged.User.Username);
                 return RedirectToPage("/Index");
             }
             else

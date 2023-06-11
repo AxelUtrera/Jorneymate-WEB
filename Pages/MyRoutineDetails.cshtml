@@ -1,7 +1,8 @@
 @page
-@model RoutineDetails
+@model MyRoutineDetails
 @{
     ViewData["Title"] = "Detalles de Rutina";
+    int Budget = 0;
 }
 
 <!-- Titulo -->
@@ -21,8 +22,11 @@
     </h5>
 </div>
 
-<div style="margin-left: 20px; margin-bottom: 20px;">
+<div class="d-flex" style="margin-left: 20px; margin-bottom: 20px;">
     <h4>@Model.routineDetails.Name</h4>
+    <button class="ms-3" style="border: none; background-color: transparent;" onclick="editRoutine('@Model.routineDetails.Id')">
+        <img src="/Img/Icon_Edit.png" height="35">
+    </button>
 </div>
 
 <div style="margin-left: 20px; margin-bottom: 20px;">
@@ -41,8 +45,8 @@
 
 <div style="margin-left: 20px; margin-bottom: 20px;">
     <h5>
-        Presupuesto:
-        <span class="fw-light">$@Model.routineDetails.Budget </span>
+        Presupuesto: <span class="fw-light">$</span>
+        <span id="spanBudget" class="fw-light"></span>
     </h5>
 </div>
 
@@ -65,17 +69,26 @@
 {
     @foreach (var item in @Model.tasksRoutines)
     {
+        Budget += item.Budget;
         <div>
             <div class="card shadow mt-3" style="cursor: pointer;" id="routineCard">
                 <div class="card-body ms-4">
                     <div class="d-flex">
                         <h5 class="card-title col-11">@item.Name</h5>
+                        <img src="/Img/Icon_Edit.png" class="me-3" height="30">
+                        <form method="post">
+                            <input hidden name="idTask" value="@item._Id">
+                            <button type="submit" style="border: none; background-color: transparent;">
+                                <img src="/Img/Icon_Delete.png" height="25">
+                            </button>
+                        </form>
                     </div>
                     <h6 class="card-subtitle fw-light">@item.Address</h6>
-                        <div class="d-flex justify-content-between">
-                            <h5 class="card-texts mt-4 fw-light">@item.TaskDescription</h5>
-                            <h5 class="card-text fw-semibold mt-4 me-4">Presupuesto: <span class="fw-light"> $@item.Budget </span> </h5>
-                        </div>
+                    <div class="d-flex justify-content-between">
+                        <h5 class="card-texts mt-4 fw-light">@item.TaskDescription</h5>
+                        <h5 class="card-text fw-semibold mt-4 me-4">Presupuesto: <span class="fw-light"> $@item.Budget </span>
+                        </h5>
+                    </div>
                 </div>
             </div>
         </div>
@@ -87,4 +100,12 @@
     const navigateBack = () => {
         window.history.back();
     }
+
+    const editRoutine = (idRoutine) => {
+        var url = "/EditRoutine/?idRoutine=" + idRoutine ;
+        window.location.href = url;
+    }
+
+    var resultadoParrafo = document.getElementById("spanBudget");
+    resultadoParrafo.textContent = @Budget;
 </script>
