@@ -20,7 +20,6 @@
 
         public async Task<IActionResult> OnPost(Routine newRoutine)
         {
-            Console.WriteLine(UserLogged.User.Username);
             string idRoutine = await RoutineLogic.SaveRoutine(UserLogged.User.Username, newRoutine);
             return RedirectToPage("/Index");
         }

@@ -78,7 +78,7 @@ namespace Jorneymate_WEB.Pages
                         Age = (int)Age,
                         Username = GenerateUsername(),
                         Email = Email,
-                        Password = Encription.GetHashedPassword(Password),
+                        Password = Password,
                     };
 
                     codeResult = await UserLogic.SignUp(userToCreate);

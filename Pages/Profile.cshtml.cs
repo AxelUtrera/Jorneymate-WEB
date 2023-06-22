@@ -23,7 +23,6 @@ public class Profile : PageModel
     [HttpPost]
     public void OnPost()
     {
-        Console.WriteLine("agarre el post");
         
     }
 }
