@@ -1,0 +1,160 @@
+@page
+@model NewRoutine
+@{
+    ViewData["Title"] = "Explorar";
+}
+
+<body>
+
+    <div>
+        <form id="routine-form" method="post">
+            <div class="d-flex">
+                <h2 class="fw-semibold me-5 col-9">Agregar Rutina</h2>
+                <button type="button" class="btn btn-light shadow me-3" data-bs-toggle="modal"
+                    data-bs-target="#confirmCancelModal">
+                    <img src="/Img/Icon_Return.png">
+                </button>
+                <button type="submit" class="btn btn-primary shadow col-2">
+                    Guardar Rutina
+                </button>
+            </div>
+
+            <div>
+                <h4 class="mt-2">Titulo</h4>
+                <input type="text" name="Name" class="form-control" id="inputRoutineTitle" placeholder="Noche de fiesta"
+                    required>
+
+                <div class="d-flex">
+                    <h4 class="mt-4 me-3 col-6">Ciudad</h4>
+                    <h4 class="mt-4 col-6">País</h4>
+                </div>
+                <div class="d-flex">
+                    <input type="text" name="City" class="form-control me-4" id="inputRoutineCity"
+                        placeholder="Monterrey" required>
+                    <input type="text" name="Country" class="form-control" id="inputRoutineCountry" placeholder="México"
+                        required>
+                </div>
+
+                <div class="d-flex">
+                    <h4 class="mt-4 me-3 col-6">Estado</h4>
+                    <h4 class="mt-4 col-6">Localidad</h4>
+                </div>
+                <div class="d-flex">
+                    <input type="text" name="StateCountry" class="form-control me-4" id="inputRoutineState"
+                        placeholder="Nuevo León" required>
+                    <input type="text" name="Town" class="form-control" id="inputRoutineTown"
+                        placeholder="Arena Monterrey" required>
+                </div>
+
+                <div class="d-flex">
+                    <h4 class="mt-4 me-3 col-6">Categoria</h4>
+                    <h4 class="mt-4 col-6">Visibilidad</h4>
+                </div>
+                <div class="d-flex">
+                    <select class="form-select me-4" name="LabelCategory" id="inputCategory" required>
+                        <option selected disabled value="">Selecciona</option>
+                        <option value="Turismo">Turismo</option>
+                        <option value="Gastronomía">Gastronomía</option>
+                        <option value="Compras">Compras</option>
+                        <option value="Entretenimiento">Entretenimiento</option>
+                        <option value="Actividades al aire libre">Actividades al aire libre</option>
+                        <option value="Vida nocturna">Vida nocturna</option>
+                        <option value="Arte y cultura">Arte y cultura</option>
+                        <option value="Naturaleza y espacios verdes">Naturaleza y espacios verdes</option>
+                        <option value="Actividades educativas">Actividades educativas</option>
+                        <option value="Deportes y recreación">Deportes y recreación</option>
+                        <option value="Relajación y bienestar">Relajación y bienestar</option>
+                        <option value="Eventos culturales">Eventos culturales</option>
+                        <option value="Aventura">Aventura</option>
+                        <option value="Actividades acuaticas">Actividades acuaticas</option>
+                        <option value="Educación y aprendizaje">Educación y aprendizaje</option>
+                    </select>
+                    <select class="form-select" name="Visibility" id="inputVisibity" required>
+                        <option selected disabled value="">Selecciona</option>
+                        <option value="public">Publica</option>
+                        <option value="private">Privada</option>
+                    </select>
+                </div>
+
+                <div>
+                    <h4 class="mt-3">Descripcion</h4>
+                    <input type="text" class="form-control" name="RoutineDescription" id="inputRoutineDescription"
+                        placeholder="Lugares para pasar una noche de fiesta espectacular" required>
+                </div>
+
+
+                <button class="btn btn-primary col-12 mt-4" type="button" id="ButtonDisplayTaskForm"
+                    onclick="displayTaskForm()">Agregar tarea</button>
+
+            </div>
+        </form>
+    </div>
+    <div>
+        <form id="NewTaskForm" class="mt-4" asp-page-handler="MyRoutineDetails" method="post" style="display: none;">
+            <h4 class="mt-2">Titulo</h4>
+            <input type="text" name="Name" class="form-control" id="inputTaskTitle" placeholder="Noche de fiesta"
+                required>
+            <div class="d-flex">
+                <h4 class="mt-4 me-3 col-6">Dirección</h4>
+                <h4 class="mt-4 col-6">Presupuesto</h4>
+            </div>
+            <div class="d-flex">
+                <input type="text" name="Direction" class="form-control me-4" id="inputTaskDirection"
+                    placeholder="Av. Las americas 245" required>
+                <input type="number" name="Budget" class="form-control" id="Budget" placeholder="190" step="1" required>
+            </div>
+            <div>
+                <h4 class="mt-3">Descripcion</h4>
+                <input type="text" class="form-control" name="TaskDescription" id="TaskDescription"
+                    placeholder="Añade una descripcion a tu tarea" required>
+            </div>
+            <button type="submit" class="btn btn-primary shadow col-2 mt-4">
+                Guardar tarea
+            </button>
+        </form>
+    </div>
+
+</body>
+
+<div class="modal fade" id="confirmCancelModal" tabindex="-1" aria-labelledby="confirmCancelModel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="cancelModalLabel">¿Cancelar registro de rutina?</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                ¿Desea cancelar el registro? Todos los datos ingresados se perderan
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" onclick="navigateToIndex()">Cancelar Registro</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+
+    const navigateToIndex = () => {
+        var url = "/Index";
+        window.location.href = url;
+    }
+
+    const displayTaskForm = () => {
+        const form = document.getElementById("NewTaskForm");
+        const buttonDisplayTaskForm = document.getElementById("ButtonDisplayTaskForm");
+        if (form.style.display !== 'none') {
+            form.style.display = 'none';
+            buttonDisplayTaskForm.textContent = "Agregar tarea"
+            buttonDisplayTaskForm.classList.remove("btn-danger");
+        } else {
+            form.style.display = 'block';
+            buttonDisplayTaskForm.textContent = "Ocultar registro"
+            buttonDisplayTaskForm.classList.add("btn-danger");
+        }
+    }
+</script>
+
+

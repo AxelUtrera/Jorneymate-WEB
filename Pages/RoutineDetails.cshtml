@@ -1,0 +1,91 @@
+@page
+@model RoutineDetails
+@{
+    ViewData["Title"] = "Detalles de Rutina";
+}
+
+<!-- Titulo -->
+<div class="m-3 d-flex">
+    <h3 class="fw-semibold col-11"> Detalles de Rutina</h3>
+    <button type="button" class="btn btn-light shadow col-1" onclick="navigateBack()">
+        <img src="/Img/Icon_Return.png">
+    </button>
+</div>
+
+<!-- Detalles de rutina -->
+
+<div style="display: flex; justify-content: flex-end; margin-right: 20px;">
+    <h5 class="fw-semibold">
+        De:
+        <span class="fw-light">@Model.routineDetails.RoutineCreator</span>
+    </h5>
+</div>
+
+<div style="margin-left: 20px; margin-bottom: 20px;">
+    <h4>@Model.routineDetails.Name</h4>
+</div>
+
+<div style="margin-left: 20px; margin-bottom: 20px;">
+    <h5>
+        Ubicación:
+        <span class="fw-light"> @Model.routineDetails.City, @Model.routineDetails.Country </span>
+    </h5>
+</div>
+
+<div style="margin-left: 20px; margin-bottom: 20px;">
+    <h5>
+        Categoria:
+        <span class="fw-light"> @Model.routineDetails.LabelCategory </span>
+    </h5>
+</div>
+
+<div style="margin-left: 20px; margin-bottom: 20px;">
+    <h5>
+        Presupuesto:
+        <span class="fw-light">$@Model.routineDetails.Budget </span>
+    </h5>
+</div>
+
+<div style="margin-left: 20px; margin-bottom: 20px;">
+    <h5>
+        Seguidores:
+        <span class="fw-light">@Model.routineDetails.Followers </span>
+    </h5>
+</div>
+
+
+<div style="margin-left: 20px; margin-bottom: 20px;">
+    <h5>
+        Descripción:
+        <span class="fw-light">@Model.routineDetails.RoutineDescription </span>
+    </h5>
+</div>
+
+
+@if (@Model.tasksRoutines != null)
+{
+    @foreach (var item in @Model.tasksRoutines)
+    {
+        <div>
+            <div class="card shadow mt-3" style="cursor: pointer;" id="routineCard">
+                <div class="card-body ms-4">
+                    <div class="d-flex">
+                        <h5 class="card-title col-11">@item.Name</h5>
+                    </div>
+                    <h6 class="card-subtitle fw-light">@item.Address</h6>
+                        <div class="d-flex justify-content-between">
+                            <h5 class="card-texts mt-4 fw-light">@item.TaskDescription</h5>
+                            <h5 class="card-text fw-semibold mt-4 me-4">Presupuesto: <span class="fw-light"> $@item.Budget </span> </h5>
+                        </div>
+                </div>
+            </div>
+        </div>
+    }
+}
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    const navigateBack = () => {
+        window.history.back();
+    }
+</script>

@@ -1,0 +1,64 @@
+@page
+@model Profile
+@using Jorneymate_WEB.Models;
+@inject UserContext UserLogged;
+@{
+    ViewData["Title"] = "Perfil";
+}
+
+<div class="m-3 d-flex flex-row">
+    <h2 class="fw-semibold mt-3 me-4 p-2"> Mi Perfil</h2>
+    <button type="button" class="btn btn-light shadow p-2" onclick="editProfile('@UserLogged.User.Username')">
+        <img src="/Img/Icon_Edit.png">
+    </button>
+    <form method="post" class="ms-auto p-2">
+        <button type="submit" class="btn btn-light shadow ms-auto p-2">
+            <img src="/Img/Icon_Logout.png">
+        </button>
+    </form>
+
+</div>
+
+<div class="d-flex flex-column" style="margin-left: 180px;">
+    <div class="mt-5 d-flex flex-row align-items-center">
+        <img src="/Img/ProfilePicture_Logo.png" class="img-thumbnail p-2 me-5" width="200">
+        <h4 class="fw-light">Hola!, soy</h4>
+        <h4 class="ms-2 text-decoration-underline">@UserLogged.User.Name @UserLogged.User.Lastname</h4>
+    </div>
+
+    <div class="d-flex mt-4">
+        <h4 class="fw-semibold col-6">Nombre de Usuario</h4>
+        <h4 class="fw-semibold col-6">Correo electronico</h4>
+    </div>
+    <div class="d-flex mt-1">
+        <h4 class="fw-light col-6">@UserLogged.User.Username</h4>
+        <h4 class="fw-light col-6">@UserLogged.User.Email</h4>
+    </div>
+
+    <div class="d-flex mt-4">
+        <h4 class="fw-semibold col-6">Numero Telefonico</h4>
+        <h4 class="fw-semibold col-6">Ubicacion</h4>
+    </div>
+    <div class="d-flex mt-1">
+        <h4 class="fw-light col-6">@UserLogged.User.PhoneNumber</h4>
+        <h4 class="fw-light col-6">@UserLogged.User.City, @UserLogged.User.Country</h4>
+    </div>
+
+    <div class="mt-4">
+        <h4 class="fw-semibold col-6">Descripción</h4>
+        <h4 class="fw-light">@UserLogged.User.UserDescription</h4>
+    </div>
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+
+    const editProfile = (username) => {
+        var url = "/EditProfile/?username=" + username;
+        window.location.href = url;
+    }
+</script>
+
+
+

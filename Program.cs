@@ -1,7 +1,10 @@
+using Jorneymate_WEB.Models;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+builder.Services.AddSingleton<UserContext>();
 
 var app = builder.Build();
 
